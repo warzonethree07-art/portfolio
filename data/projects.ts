@@ -1,4 +1,4 @@
-export type ProjectType = "Motion Graphics" | "Brand Film" | "Title Sequence" | "Social Reel";
+export type ProjectType = "Computer Vision" | "Medical AI" | "Bioinformatics" | "Image Processing";
 
 export type Project = {
   title: string;
@@ -14,77 +14,65 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Neon Pulse Campaign",
-    client: "RecruiterOne",
-    type: "Motion Graphics",
+    title: "Hand Gesture Detection",
+    client: "Personal Project",
+    type: "Computer Vision",
     year: "2025",
-    result: "+184% Watch Time",
-    description: "High-intensity campaign with kinetic type, rhythmic cuts, and layered compositing for social launch.",
-    tools: ["After Effects", "Motion Design", "Sound Sync"],
+    result: "Real-Time Gesture Recognition",
+    description:
+      "Built a webcam-based hand gesture detection pipeline using landmark tracking and a lightweight classifier for live interaction.",
+    tools: ["Python", "OpenCV", "MediaPipe"],
     thumbnail: "/project-1.svg",
-    link: "https://www.behance.net/"
+    link: "https://github.com/"
   },
   {
-    title: "Optimo Reveal Film",
-    client: "Optimo Autohaus",
-    type: "Brand Film",
+    title: "Pneumonia Detection",
+    client: "Academic Project",
+    type: "Medical AI",
     year: "2024",
-    result: "+72% Lead Quality",
-    description: "Product reveal sequence combining cinematic pacing, 3D-like depth cues, and premium transitions.",
-    tools: ["After Effects", "Brand Systems", "Compositing"],
+    result: "Chest X-ray Screening Model",
+    description:
+      "Trained and evaluated a deep learning model to identify pneumonia patterns from chest X-ray images with a clinically oriented workflow.",
+    tools: ["Python", "TensorFlow", "CNN"],
     thumbnail: "/project-2.svg",
-    link: "https://www.behance.net/"
+    link: "https://github.com/"
   },
   {
-    title: "Kooki Opener",
-    client: "Kooki",
-    type: "Title Sequence",
+    title: "Real-Time Object Classification",
+    client: "Personal Project",
+    type: "Computer Vision",
     year: "2024",
-    result: "+126% Retention",
-    description: "Fast editorial title package with custom glyph timing and punchy frame-to-frame motion beats.",
-    tools: ["Kinetic Typography", "Timing", "Styleframes"],
+    result: "Live Multi-Class Inference",
+    description:
+      "Implemented a low-latency object classification system for camera streams with optimized preprocessing and fast frame inference.",
+    tools: ["PyTorch", "OpenCV", "ONNX Runtime"],
     thumbnail: "/project-3.svg",
-    link: "https://www.behance.net/"
+    link: "https://github.com/"
   },
   {
-    title: "IIIT Fest Social Kit",
-    client: "IIIT Raichur",
-    type: "Social Reel",
-    year: "2023",
-    result: "+210K Organic Views",
-    description: "Multi-format social motion kit designed for event announcements, countdowns, and post-event recaps.",
-    tools: ["After Effects", "Template Systems", "Motion Toolkit"],
+    title: "Gene Expression Based Cancer Classification",
+    client: "Research Project",
+    type: "Bioinformatics",
+    year: "2024",
+    result: "Cancer Subtype Prediction",
+    description:
+      "Developed a machine learning pipeline using gene expression features to classify cancer types and compare model behavior across datasets.",
+    tools: ["Python", "scikit-learn", "Pandas"],
     thumbnail: "/project-4.svg",
-    link: "https://www.behance.net/"
+    link: "https://github.com/"
   },
   {
-    title: "Spectrum Type Study",
-    client: "Independent",
-    type: "Motion Graphics",
+    title: "Old Image Restoration",
+    client: "Personal Project",
+    type: "Image Processing",
     year: "2023",
-    result: "+93% Completion Rate",
-    description: "Experimental type study focused on contrast, pacing, and expressive letter animation structures.",
-    tools: ["Motion Design", "Typography", "Color Direction"],
+    result: "Damage-Aware Photo Recovery",
+    description:
+      "Created an image restoration workflow to recover old and damaged photos using denoising, enhancement, and reconstruction techniques.",
+    tools: ["Python", "OpenCV", "Image Enhancement"],
     thumbnail: "/project-5.svg",
-    link: "https://www.behance.net/"
-  },
-  {
-    title: "Aura Launch Snippets",
-    client: "Aura",
-    type: "Social Reel",
-    year: "2023",
-    result: "-38% Bounce",
-    description: "Short-form launch reels optimized for mobile attention spans with rapid hook-first intros.",
-    tools: ["Storyboarding", "Editing", "Micro Interactions"],
-    thumbnail: "/project-6.svg",
-    link: "https://www.behance.net/"
+    link: "https://github.com/"
   }
 ];
 
-export const projectFilters: ("All" | ProjectType)[] = [
-  "All",
-  "Motion Graphics",
-  "Brand Film",
-  "Title Sequence",
-  "Social Reel"
-];
+export const projectFilters: ("All" | ProjectType)[] = ["All", "Computer Vision", "Medical AI", "Bioinformatics", "Image Processing"];

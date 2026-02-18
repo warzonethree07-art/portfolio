@@ -1,4 +1,8 @@
-import { Instagram, Linkedin, Palette } from "lucide-react";
+"use client";
+
+import { useEffect, useState } from "react";
+import { Instagram, Linkedin, Moon, Palette, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import type { NavItem, SectionId } from "@/components/portfolio/types";
 
 type HeaderProps = {
@@ -18,6 +22,27 @@ export default function Header({
   onNavClick,
   onToggleMenu
 }: HeaderProps) {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = mounted ? resolvedTheme !== "light" : true;
+  const toggleTheme = () => {
+    if (!mounted) {
+      return;
+    }
+    setTheme(isDark ? "light" : "dark");
+  };
+
+  const toggleLabel = mounted
+    ? isDark
+      ? "Switch to light theme"
+      : "Switch to dark theme"
+    : "Toggle theme";
+
   return (
     <>
       <header className="dh-nav">
@@ -51,6 +76,15 @@ export default function Header({
             <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
               <Linkedin size={14} aria-hidden />
             </a>
+            <button
+              type="button"
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label={toggleLabel}
+              title={toggleLabel}
+            >
+              {isDark ? <Sun size={14} aria-hidden /> : <Moon size={14} aria-hidden />}
+            </button>
           </div>
 
           <button

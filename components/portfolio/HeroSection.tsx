@@ -21,8 +21,8 @@ export default function HeroSection({ onNavClick, tickerWords }: HeroSectionProp
         </div>
 
         <p className="intro-line hero-copy">
-          Sajith, CSE @ IIIT Raichur 2023. Motion Graphics Designer building high-retention visuals with sharp pacing,
-          expressive typography, and clean transition systems.
+          Sajith, B.Tech in CSE at IIIT Raichur. I build practical AI and computer vision projects focused on real-time
+          performance and reliable model behavior.
         </p>
 
         <div className="intro-line hero-strip">

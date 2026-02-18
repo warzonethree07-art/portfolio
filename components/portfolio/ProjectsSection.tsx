@@ -18,7 +18,7 @@ export default function ProjectsSection({
     <section id="projects" className="dh-section">
       <div className="section-head" data-fade>
         <p className="eyebrow">Featured Projects</p>
-        <h2>Motion design built for performance, not just aesthetics.</h2>
+        <h2>AI and computer vision projects built for practical performance.</h2>
       </div>
 
       <div className="filter-row" data-fade>
