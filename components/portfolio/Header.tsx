@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { MouseEvent as ReactMouseEvent } from "react";
 import { Instagram, Linkedin, Moon, Palette, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { flushSync } from "react-dom";
 import type { NavItem, SectionId } from "@/components/portfolio/types";
 
 type HeaderProps = {
@@ -12,6 +14,14 @@ type HeaderProps = {
   onCloseMenu: () => void;
   onNavClick: (sectionId: SectionId) => void;
   onToggleMenu: () => void;
+};
+
+type ViewTransition = {
+  ready: Promise<void>;
+};
+
+type DocumentWithTransition = Document & {
+  startViewTransition?: (update: () => void) => ViewTransition;
 };
 
 export default function Header({
@@ -30,11 +40,45 @@ export default function Header({
   }, []);
 
   const isDark = mounted ? resolvedTheme !== "light" : true;
-  const toggleTheme = () => {
+  const toggleTheme = (event: ReactMouseEvent<HTMLButtonElement>) => {
     if (!mounted) {
       return;
     }
-    setTheme(isDark ? "light" : "dark");
+
+    const nextTheme = isDark ? "light" : "dark";
+    const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const transitionDoc = document as DocumentWithTransition;
+
+    if (!transitionDoc.startViewTransition || shouldReduceMotion) {
+      setTheme(nextTheme);
+      return;
+    }
+
+    const buttonRect = event.currentTarget.getBoundingClientRect();
+    const x = buttonRect.left + buttonRect.width / 2;
+    const y = buttonRect.top + buttonRect.height / 2;
+    const endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+
+    const transition = transitionDoc.startViewTransition(() => {
+      flushSync(() => setTheme(nextTheme));
+    });
+
+    transition.ready
+      .then(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
+          },
+          {
+            duration: 1000,
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+            pseudoElement: "::view-transition-new(root)"
+          }
+        );
+      })
+      .catch(() => {
+        setTheme(nextTheme);
+      });
   };
 
   const toggleLabel = mounted
@@ -126,6 +170,9 @@ export default function Header({
             <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
               LinkedIn
             </a>
+            <button type="button" className="mobile-theme-toggle" onClick={toggleTheme} aria-label={toggleLabel}>
+              {isDark ? "Light theme" : "Dark theme"}
+            </button>
           </div>
         </div>
       </div>

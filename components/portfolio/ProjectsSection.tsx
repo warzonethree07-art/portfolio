@@ -43,7 +43,7 @@ export default function ProjectsSection({
               <div
                 className="project-media"
                 style={{
-                  backgroundImage: `linear-gradient(140deg, rgba(214, 222, 172, 0.2), rgba(10, 10, 10, 0.52)), url(${project.thumbnail})`
+                  backgroundImage: `linear-gradient(140deg, rgba(215, 38, 56, 0.34), rgba(63, 13, 18, 0.65)), url(${project.thumbnail})`
                 }}
                 role="img"
                 aria-label={`${project.title} thumbnail`}
